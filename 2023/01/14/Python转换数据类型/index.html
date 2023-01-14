@@ -16,23 +16,23 @@
   <meta name="author" content="LianShuo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="这是一级标题这是一张图片 这是二级标题这是一串代码 1for i in arry[1,2,3,4,5] 这是三级标题就到这吧">
+    <meta name="description" content="一. 转换数据类型的作用问：input()接收用户输入的数据都是字符串类型，如果用户输入1，想得到整型该如何操作？ 答：转换数据类型即可，即将字符串类型转换成整型。 二. 转换数据类型的函数   函数 说明    &#x3D;&#x3D;int(x [,base ])&#x3D;&#x3D; 将x转换为一个整数   &#x3D;&#x3D;float(x )&#x3D;&#x3D; 将x转换为一个">
 <meta property="og:type" content="article">
-<meta property="og:title" content="article title">
-<meta property="og:url" content="http://lian-shuo.github.io/2023/01/13/article-title/index.html">
+<meta property="og:title" content="Python转换数据类型">
+<meta property="og:url" content="http://lian-shuo.github.io/2023/01/14/Python%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="lianshuo&#39;s blog">
-<meta property="og:description" content="这是一级标题这是一张图片 这是二级标题这是一串代码 1for i in arry[1,2,3,4,5] 这是三级标题就到这吧">
+<meta property="og:description" content="一. 转换数据类型的作用问：input()接收用户输入的数据都是字符串类型，如果用户输入1，想得到整型该如何操作？ 答：转换数据类型即可，即将字符串类型转换成整型。 二. 转换数据类型的函数   函数 说明    &#x3D;&#x3D;int(x [,base ])&#x3D;&#x3D; 将x转换为一个整数   &#x3D;&#x3D;float(x )&#x3D;&#x3D; 将x转换为一个">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lian-shuo.github.io/2023/01/13/article-title/KDA.jpg">
-<meta property="article:published_time" content="2023-01-13T10:28:25.000Z">
-<meta property="article:modified_time" content="2023-01-13T10:55:40.825Z">
+<meta property="article:published_time" content="2023-01-14T13:15:32.000Z">
+<meta property="article:modified_time" content="2023-01-14T13:22:52.465Z">
 <meta property="article:author" content="LianShuo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="转换数据类型">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://lian-shuo.github.io/2023/01/13/article-title/KDA.jpg">
   
   
   
-  <title>article title - lianshuo&#39;s blog</title>
+  <title>Python转换数据类型 - lianshuo&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="article title"></span>
+            <span id="subtitle" data-typed-text="Python转换数据类型"></span>
           
         </div>
 
@@ -209,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-01-13 18:28" pubdate>
-          2023年1月13日 晚上
+        <time datetime="2023-01-14 21:15" pubdate>
+          2023年1月14日 晚上
         </time>
       </span>
     
@@ -221,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          56 字
+          1.3k 字
         
       </span>
     
@@ -232,7 +232,7 @@
         
         
         
-          1 分钟
+          12 分钟
         
       </span>
     
@@ -270,15 +270,89 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">article title</h1>
+            <h1 style="display: none">Python转换数据类型</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="这是一级标题"><a href="#这是一级标题" class="headerlink" title="这是一级标题"></a>这是一级标题</h1><p>这是一张图片<br><img src="/2023/01/13/article-title/KDA.jpg" srcset="/img/loading.gif" lazyload></p>
-<h2 id="这是二级标题"><a href="#这是二级标题" class="headerlink" title="这是二级标题"></a>这是二级标题</h2><p>这是一串代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> arry[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>]<br></code></pre></td></tr></table></figure>
-<h3 id="这是三级标题"><a href="#这是三级标题" class="headerlink" title="这是三级标题"></a>这是三级标题</h3><p>就到这吧</p>
+                <h1 id="一-转换数据类型的作用"><a href="#一-转换数据类型的作用" class="headerlink" title="一. 转换数据类型的作用"></a>一. 转换数据类型的作用</h1><p>问：input()接收用户输入的数据都是字符串类型，如果用户输入1，想得到整型该如何操作？</p>
+<p>答：转换数据类型即可，即将字符串类型转换成整型。</p>
+<h1 id="二-转换数据类型的函数"><a href="#二-转换数据类型的函数" class="headerlink" title="二. 转换数据类型的函数"></a>二. 转换数据类型的函数</h1><table>
+<thead>
+<tr>
+<th align="center">函数</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&#x3D;&#x3D;int(x [,base ])&#x3D;&#x3D;</td>
+<td align="center">将x转换为一个整数</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;float(x )&#x3D;&#x3D;</td>
+<td align="center">将x转换为一个浮点数</td>
+</tr>
+<tr>
+<td align="center">complex(real [,imag ])</td>
+<td align="center">创建一个复数，real为实部，imag为虚部</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;str(x )&#x3D;&#x3D;</td>
+<td align="center">将对象 x 转换为字符串</td>
+</tr>
+<tr>
+<td align="center">repr(x )</td>
+<td align="center">将对象 x 转换为表达式字符串</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;eval(str )&#x3D;&#x3D;</td>
+<td align="center">用来计算在字符串中的有效Python表达式,并返回一个对象</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;tuple(s )&#x3D;&#x3D;</td>
+<td align="center">将序列 s 转换为一个元组</td>
+</tr>
+<tr>
+<td align="center">&#x3D;&#x3D;list(s )&#x3D;&#x3D;</td>
+<td align="center">将序列 s 转换为一个列表</td>
+</tr>
+<tr>
+<td align="center">chr(x )</td>
+<td align="center">将一个整数转换为一个Unicode字符</td>
+</tr>
+<tr>
+<td align="center">ord(x )</td>
+<td align="center">将一个字符转换为它的ASCII整数值</td>
+</tr>
+<tr>
+<td align="center">hex(x )</td>
+<td align="center">将一个整数转换为一个十六进制字符串</td>
+</tr>
+<tr>
+<td align="center">oct(x )</td>
+<td align="center">将一个整数转换为一个八进制字符串</td>
+</tr>
+<tr>
+<td align="center">bin(x )</td>
+<td align="center">将一个整数转换为一个二进制字符串</td>
+</tr>
+</tbody></table>
+<h1 id="三-快速体验"><a href="#三-快速体验" class="headerlink" title="三. 快速体验"></a>三. 快速体验</h1><p>需求：input接收用户输入，用户输入“1”，将这个数据1转换成整型。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. 接收用户输入</span><br>num = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;请输入您的幸运数字：&#x27;</span>)<br><br><span class="hljs-comment"># 2. 打印结果</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;您的幸运数字是<span class="hljs-subst">&#123;num&#125;</span>&quot;</span>)<br><br><br><span class="hljs-comment"># 3. 检测接收到的用户输入的数据类型 -- str类型</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(num))<br><br><span class="hljs-comment"># 4. 转换数据类型为整型 -- int类型</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">int</span>(num)))<br></code></pre></td></tr></table></figure>
+
+<h1 id="四-实验"><a href="#四-实验" class="headerlink" title="四. 实验"></a>四. 实验</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. float() -- 转换成浮点型</span><br>num1 = <span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">float</span>(num1))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">float</span>(num1)))<br><br><span class="hljs-comment"># 2. str() -- 转换成字符串类型</span><br>num2 = <span class="hljs-number">10</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">str</span>(num2)))<br><br><span class="hljs-comment"># 3. tuple() -- 将一个序列转换成元组</span><br>list1 = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>]<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">tuple</span>(list1))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">tuple</span>(list1)))<br><br><br><span class="hljs-comment"># 4. list() -- 将一个序列转换成列表</span><br>t1 = (<span class="hljs-number">100</span>, <span class="hljs-number">200</span>, <span class="hljs-number">300</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(t1))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">list</span>(t1)))<br><br><span class="hljs-comment"># 5. eval() -- 将字符串中的数据转换成Python表达式原本类型</span><br>str1 = <span class="hljs-string">&#x27;10&#x27;</span><br>str2 = <span class="hljs-string">&#x27;[1, 2, 3]&#x27;</span><br>str3 = <span class="hljs-string">&#x27;(1000, 2000, 3000)&#x27;</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">eval</span>(str1)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">eval</span>(str2)))<br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">type</span>(<span class="hljs-built_in">eval</span>(str3)))<br></code></pre></td></tr></table></figure>
+
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>转换数据类型常用的函数<ul>
+<li>int()</li>
+<li>float()</li>
+<li>str()</li>
+<li>list()</li>
+<li>tuple()</li>
+<li>eval()</li>
+</ul>
+</li>
+</ul>
 
                 
               </div>
@@ -287,6 +361,36 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/%E8%BD%AC%E6%8D%A2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">#转换数据类型</a>
+      
+    </div>
   
 </div>
 
@@ -296,8 +400,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>article title</div>
-      <div>http://lian-shuo.github.io/2023/01/13/article-title/</div>
+      <div>Python转换数据类型</div>
+      <div>http://lian-shuo.github.io/2023/01/14/Python转换数据类型/</div>
     </div>
     <div class="license-meta">
       
@@ -309,7 +413,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年1月13日</div>
+          <div>2023年1月14日</div>
         </div>
       
       
@@ -341,9 +445,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/01/14/Python%E6%B3%A8%E9%87%8A/" title="Python注释">
+                      <a href="/2023/01/14/Python%E8%BF%90%E7%AE%97%E7%AC%A6/" title="Python运算符">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Python注释</span>
+                        <span class="hidden-mobile">Python运算符</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -351,8 +455,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/01/13/hello-world/" title="Hello World">
-                        <span class="hidden-mobile">Hello World</span>
+                      <a href="/2023/01/14/Python%E8%BE%93%E5%85%A5/" title="Python输入">
+                        <span class="hidden-mobile">Python输入</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
