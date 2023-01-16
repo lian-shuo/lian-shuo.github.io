@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LianShuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="目标 了解循环 while语法【重点】 while应用 break和continue while循环嵌套【重点】 while循环嵌套应用【难点】 for循环  一. 循环简介1.1 循环的作用 思考：假如我有个女朋友，有一天我们闹矛盾生气了，女朋友说：道歉，说100遍“媳妇儿，我错了”。这个时候程序员会怎么做？ 答：100遍print(&#39;媳妇儿，我错了&#39;)   思考：复制粘贴100">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 循环">
+<meta property="og:url" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:site_name" content="lianshuo&#39;s blog">
+<meta property="og:description" content="目标 了解循环 while语法【重点】 while应用 break和continue while循环嵌套【重点】 while循环嵌套应用【难点】 for循环  一. 循环简介1.1 循环的作用 思考：假如我有个女朋友，有一天我们闹矛盾生气了，女朋友说：道歉，说100遍“媳妇儿，我错了”。这个时候程序员会怎么做？ 答：100遍print(&#39;媳妇儿，我错了&#39;)   思考：复制粘贴100">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190124114340900.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190124114514775.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104161506542-6589706.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/while2.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104163553616-6590953.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104164152311-6591312.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165242555-6591962.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165413160-6592053.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125111816497.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125111952693.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125112111170.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165551501-6592151.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165714740-6592234.png">
+<meta property="article:published_time" content="2023-01-16T02:49:45.000Z">
+<meta property="article:modified_time" content="2023-01-16T03:00:00.811Z">
+<meta property="article:author" content="LianShuo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="循环">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lian-shuo.github.io/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190124114340900.png">
+  
+  
+  
+  <title>Python 循环 - lianshuo&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lian-shuo.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LianShuo&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Python 循环"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-16 10:49" pubdate>
+          2023年1月16日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          44 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Python 循环</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>了解循环</li>
+<li>while语法【重点】</li>
+<li>while应用</li>
+<li>break和continue</li>
+<li>while循环嵌套【重点】</li>
+<li>while循环嵌套应用【难点】</li>
+<li>for循环</li>
+</ul>
+<h1 id="一-循环简介"><a href="#一-循环简介" class="headerlink" title="一. 循环简介"></a>一. 循环简介</h1><h2 id="1-1-循环的作用"><a href="#1-1-循环的作用" class="headerlink" title="1.1 循环的作用"></a>1.1 循环的作用</h2><blockquote>
+<p>思考：假如我有个女朋友，有一天我们闹矛盾生气了，女朋友说：道歉，说100遍“媳妇儿，我错了”。这个时候程序员会怎么做？</p>
+<p>答：100遍<code>print(&#39;媳妇儿，我错了&#39;)</code></p>
+</blockquote>
+<blockquote>
+<p>思考：复制粘贴100次吗？</p>
+<p>答：重复执行100次一样的代码，程序中循环即可</p>
+</blockquote>
+<p>循环的作用：让代码更高效的重复执行。</p>
+<h2 id="1-2-循环的分类"><a href="#1-2-循环的分类" class="headerlink" title="1.2 循环的分类"></a>1.2 循环的分类</h2><p>在Python中，循环分为<code>while</code>和<code>for</code>两种，最终实现效果相同。</p>
+<h1 id="二-while的语法"><a href="#二-while的语法" class="headerlink" title="二. while的语法"></a>二. while的语法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件:<br>    条件成立重复执行的代码<span class="hljs-number">1</span><br>    条件成立重复执行的代码<span class="hljs-number">2</span><br>    ......<br></code></pre></td></tr></table></figure>
+
+<h2 id="2-1-快速体验"><a href="#2-1-快速体验" class="headerlink" title="2.1 快速体验"></a>2.1 快速体验</h2><p>需求：复现重复执行100次<code>print(&#39;媳妇儿，我错了&#39;)</code>（输出更简洁一些，我们这里设置5次）。</p>
+<p>分析：初始值是0次，终点是5次，重复做的事情输出“媳妇儿， 我错了”。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 循环的计数器</span><br>i = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">5</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;任务结束&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h1 id="三-while的应用"><a href="#三-while的应用" class="headerlink" title="三. while的应用"></a>三. while的应用</h1><h2 id="3-1-应用一：计算1-100累加和"><a href="#3-1-应用一：计算1-100累加和" class="headerlink" title="3.1 应用一：计算1-100累加和"></a>3.1 应用一：计算1-100累加和</h2><p>分析：1-100的累加和，即1 + 2 + 3 + 4 +….，即前两个数字的相加结果 + 下一个数字( 前一个数字 + 1)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br>result = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">100</span>:<br>    result += i<br>    i += <span class="hljs-number">1</span><br><br><span class="hljs-comment"># 输出5050</span><br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：为了验证程序的准确性，可以先改小数值，验证结果正确后，再改成1-100做累加。</p>
+</blockquote>
+<h2 id="3-2-应用二：计算1-100偶数累加和"><a href="#3-2-应用二：计算1-100偶数累加和" class="headerlink" title="3.2 应用二：计算1-100偶数累加和"></a>3.2 应用二：计算1-100偶数累加和</h2><p>分析：1-100的偶数和，即 2 + 4 + 6 + 8….，得到偶数的方法如下：</p>
+<ul>
+<li>偶数即是和2取余结果为0的数字，可以加入条件语句判断是否为偶数，为偶数则累加</li>
+<li>初始值为0 &#x2F; 2 , 计数器每次累加2</li>
+</ul>
+<h3 id="3-2-1-方法一：条件判断和2取余数则累加"><a href="#3-2-1-方法一：条件判断和2取余数则累加" class="headerlink" title="3.2.1 方法一：条件判断和2取余数则累加"></a>3.2.1 方法一：条件判断和2取余数则累加</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方法一：条件判断和2取余数为0则累加计算</span><br>i = <span class="hljs-number">1</span><br>result = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">100</span>:<br>    <span class="hljs-keyword">if</span> i % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>:<br>        result += i<br>    i += <span class="hljs-number">1</span><br><br><span class="hljs-comment"># 输出2550</span><br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
+
+<h3 id="3-2-2-方法二：计数器控制"><a href="#3-2-2-方法二：计数器控制" class="headerlink" title="3.2.2 方法二：计数器控制"></a>3.2.2 方法二：计数器控制</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 方法二：计数器控制增量为2</span><br>i = <span class="hljs-number">0</span><br>result = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">100</span>:<br>    result += i<br>    i += <span class="hljs-number">2</span><br><br><span class="hljs-comment"># 输出2550</span><br><span class="hljs-built_in">print</span>(result)<br></code></pre></td></tr></table></figure>
+
+<h1 id="四、break和continue"><a href="#四、break和continue" class="headerlink" title="四、break和continue"></a>四、break和continue</h1><p>break和continue是循环中满足一定条件退出循环的两种不同方式。</p>
+<h2 id="4-1-理解"><a href="#4-1-理解" class="headerlink" title="4.1 理解"></a>4.1 理解</h2><p>举例：一共吃5个苹果，吃完第一个，吃第二个…，这里”吃苹果”的动作是不是重复执行？</p>
+<p>情况一：如果吃的过程中，吃完第三个吃饱了，则不需要再吃第4个和第五个苹果，即是吃苹果的动作停止，这里就是break控制循环流程，即&#x3D;&#x3D;终止此循环&#x3D;&#x3D;。</p>
+<p>情况二：如果吃的过程中，吃到第三个吃出一个大虫子…,是不是这个苹果就不吃了，开始吃第四个苹果，这里就是continue控制循环流程，即&#x3D;&#x3D;退出当前一次循环继而执行下一次循环代码&#x3D;&#x3D;。</p>
+<h3 id="4-1-1-情况一：break"><a href="#4-1-1-情况一：break" class="headerlink" title="4.1.1 情况一：break"></a>4.1.1 情况一：break</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">4</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;吃饱了不吃了&#x27;</span>)<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;吃了第<span class="hljs-subst">&#123;i&#125;</span>个苹果&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190124114340900.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="4-1-2-情况二：continue"><a href="#4-1-2-情况二：continue" class="headerlink" title="4.1.2 情况二：continue"></a>4.1.2 情况二：continue</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">3</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;大虫子，第<span class="hljs-subst">&#123;i&#125;</span>个不吃了&#x27;</span>)<br>        <span class="hljs-comment"># 在continue之前一定要修改计数器，否则会陷入死循环</span><br>        i += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;吃了第<span class="hljs-subst">&#123;i&#125;</span>个苹果&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190124114514775.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="五-while循环嵌套"><a href="#五-while循环嵌套" class="headerlink" title="五. while循环嵌套"></a>五. while循环嵌套</h1><h2 id="5-1-应用场景"><a href="#5-1-应用场景" class="headerlink" title="5.1 应用场景"></a>5.1 应用场景</h2><p>故事梗概：有天女朋友又生气了，惩罚：说3遍“媳妇儿， 我错了”，这个程序是不是循环即可？但如果女朋友说：还要刷今天晚饭的碗，这个程序怎么书写？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿， 我错了&#x27;</span>)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;刷晚饭的碗&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>但如果女朋友还是生气，把这套惩罚要连续3天都执行，有如何书写程序？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件:<br>    <span class="hljs-keyword">while</span> 条件:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿， 我错了&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;刷晚饭的碗&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-2-语法"><a href="#5-2-语法" class="headerlink" title="5.2 语法"></a>5.2 语法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件<span class="hljs-number">1</span>:<br>    条件<span class="hljs-number">1</span>成立执行的代码<br>    ......<br>    <span class="hljs-keyword">while</span> 条件<span class="hljs-number">2</span>:<br>        条件<span class="hljs-number">2</span>成立执行的代码<br>        ......<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>总结：所谓while循环嵌套，就是一个while里面嵌套一个while的写法，每个while和之前的基础语法是相同的。</p>
+</blockquote>
+<h2 id="5-3-快速体验：复现场景"><a href="#5-3-快速体验：复现场景" class="headerlink" title="5.3 快速体验：复现场景"></a>5.3 快速体验：复现场景</h2><h3 id="5-3-1-代码"><a href="#5-3-1-代码" class="headerlink" title="5.3.1 代码"></a>5.3.1 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">j = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> j &lt; <span class="hljs-number">3</span>:<br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt; <span class="hljs-number">3</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;刷晚饭的碗&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;一套惩罚结束----------------&#x27;</span>)<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="5-3-2-执行结果"><a href="#5-3-2-执行结果" class="headerlink" title="5.3.2 执行结果"></a>5.3.2 执行结果</h3><p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104161506542-6589706.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="5-3-3-理解执行流程"><a href="#5-3-3-理解执行流程" class="headerlink" title="5.3.3 理解执行流程"></a>5.3.3 理解执行流程</h3><p>当内部循环执行完成之后，再执行下一次外部循环的条件判断。</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/while2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="六-while循环嵌套应用"><a href="#六-while循环嵌套应用" class="headerlink" title="六. while循环嵌套应用"></a>六. while循环嵌套应用</h1><h2 id="6-1-应用一：打印星号-正方形"><a href="#6-1-应用一：打印星号-正方形" class="headerlink" title="6.1 应用一：打印星号(正方形)"></a>6.1 应用一：打印星号(正方形)</h2><h3 id="6-1-1-需求"><a href="#6-1-1-需求" class="headerlink" title="6.1.1 需求"></a>6.1.1 需求</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html">*****<br>*****<br>*****<br>*****<br>*****<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-1-2-代码"><a href="#6-1-2-代码" class="headerlink" title="6.1.2 代码"></a>6.1.2 代码</h3><p>分析：一行输出5个星号，重复打印5行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 重复打印5行星星</span><br>j = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> j &lt;= <span class="hljs-number">4</span>:<br>    <span class="hljs-comment"># 一行星星的打印</span><br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">4</span>:<br>        <span class="hljs-comment"># 一行内的星星不能换行，取消print默认结束符\n</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;*&#x27;</span>, end=<span class="hljs-string">&#x27;&#x27;</span>)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-comment"># 每行结束要换行，这里借助一个空的print，利用print默认结束符换行</span><br>    <span class="hljs-built_in">print</span>()<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-2-应用二：打印星号-三角形"><a href="#6-2-应用二：打印星号-三角形" class="headerlink" title="6.2 应用二：打印星号(三角形)"></a>6.2 应用二：打印星号(三角形)</h2><h3 id="6-2-1-需求"><a href="#6-2-1-需求" class="headerlink" title="6.2.1 需求"></a>6.2.1 需求</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html">*<br>**<br>***<br>****<br>*****<br></code></pre></td></tr></table></figure>
+
+<h3 id="6-2-2-代码"><a href="#6-2-2-代码" class="headerlink" title="6.2.2 代码"></a>6.2.2 代码</h3><p>分析：&#x3D;&#x3D;一行输出星星的个数和行号是相等的&#x3D;&#x3D;，每行：重复打印行号数字个星号，将打印行星号的命令重复执行5次实现打印5行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 重复打印5行星星</span><br><span class="hljs-comment"># j表示行号</span><br>j = <span class="hljs-number">0</span><br><span class="hljs-keyword">while</span> j &lt;= <span class="hljs-number">4</span>:<br>    <span class="hljs-comment"># 一行星星的打印</span><br>    i = <span class="hljs-number">0</span><br>    <span class="hljs-comment"># i表示每行里面星星的个数，这个数字要和行号相等所以i要和j联动</span><br>    <span class="hljs-keyword">while</span> i &lt;= j:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;*&#x27;</span>, end=<span class="hljs-string">&#x27;&#x27;</span>)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>()<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-3-九九乘法表"><a href="#6-3-九九乘法表" class="headerlink" title="6.3 九九乘法表"></a>6.3 九九乘法表</h2><h3 id="6-3-1-执行结果"><a href="#6-3-1-执行结果" class="headerlink" title="6.3.1 执行结果"></a>6.3.1 执行结果</h3><p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104163553616-6590953.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="6-3-2-代码"><a href="#6-3-2-代码" class="headerlink" title="6.3.2 代码"></a>6.3.2 代码</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 重复打印9行表达式</span><br>j = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> j &lt;= <span class="hljs-number">9</span>:<br>    <span class="hljs-comment"># 打印一行里面的表达式 a * b = a*b</span><br>    i = <span class="hljs-number">1</span><br>    <span class="hljs-keyword">while</span> i &lt;= j:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;i&#125;</span>*<span class="hljs-subst">&#123;j&#125;</span>=<span class="hljs-subst">&#123;j*i&#125;</span>&#x27;</span>, end=<span class="hljs-string">&#x27;\t&#x27;</span>)<br>        i += <span class="hljs-number">1</span><br>    <span class="hljs-built_in">print</span>()<br>    j += <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="七、for循环"><a href="#七、for循环" class="headerlink" title="七、for循环"></a>七、for循环</h1><h2 id="7-1-语法"><a href="#7-1-语法" class="headerlink" title="7.1 语法"></a>7.1 语法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> 临时变量 <span class="hljs-keyword">in</span> 序列:<br>    重复执行的代码<span class="hljs-number">1</span><br>    重复执行的代码<span class="hljs-number">2</span><br>    ......<br></code></pre></td></tr></table></figure>
+
+<h2 id="7-2-快速体验"><a href="#7-2-快速体验" class="headerlink" title="7.2 快速体验"></a>7.2 快速体验</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104164152311-6591312.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="7-3-break"><a href="#7-3-break" class="headerlink" title="7.3 break"></a>7.3 break</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-string">&#x27;e&#x27;</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;遇到e不打印&#x27;</span>)<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165242555-6591962.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="7-4-continue"><a href="#7-4-continue" class="headerlink" title="7.4 continue"></a>7.4 continue</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-string">&#x27;e&#x27;</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;遇到e不打印&#x27;</span>)<br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-built_in">print</span>(i)<br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165413160-6592053.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="八-else"><a href="#八-else" class="headerlink" title="八. else"></a>八. else</h1><p>循环可以和else配合使用，else下方缩进的代码指的是&#x3D;&#x3D;当循环正常结束之后要执行的代码&#x3D;&#x3D;。</p>
+<h2 id="8-1-while…else"><a href="#8-1-while…else" class="headerlink" title="8.1 while…else"></a>8.1 while…else</h2><p>需求：女朋友生气了，要惩罚：连续说5遍“媳妇儿，我错了”，如果道歉正常完毕女朋友就原谅我了，这个程序怎么写？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿原谅我了...&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>思考： 这个print是不是没有循环也能执行？</p>
+</blockquote>
+<h3 id="8-1-1-语法"><a href="#8-1-1-语法" class="headerlink" title="8.1.1 语法"></a>8.1.1 语法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件:<br>    条件成立重复执行的代码<br><span class="hljs-keyword">else</span>:<br>    循环正常结束之后要执行的代码<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-1-2-示例"><a href="#8-1-2-示例" class="headerlink" title="8.1.2 示例"></a>8.1.2 示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇原谅我了，真开心，哈哈哈哈&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125111816497.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="8-1-3-退出循环的方式"><a href="#8-1-3-退出循环的方式" class="headerlink" title="8.1.3 退出循环的方式"></a>8.1.3 退出循环的方式</h3><p>需求：女朋友生气，要求道歉5遍：媳妇儿，我错了。道歉到第三遍的时候，媳妇埋怨这一遍说的不真诚，是不是就是要退出循环了？这个退出有两种可能性：</p>
+<ul>
+<li>更生气，不打算原谅，也不需要道歉了，程序如何书写？</li>
+<li>只一遍不真诚，可以忍受，继续下一遍道歉，程序如何书写？</li>
+</ul>
+<ol>
+<li>break</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">3</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;这遍说的不真诚&#x27;</span>)<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇原谅我了，真开心，哈哈哈哈&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125111952693.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>所谓else指的是循环正常结束之后要执行的代码，即如果是break终止循环的情况，else下方缩进的代码将不执行。</p>
+</blockquote>
+<ol start="2">
+<li>continue</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">i = <span class="hljs-number">1</span><br><span class="hljs-keyword">while</span> i &lt;= <span class="hljs-number">5</span>:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-number">3</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;这遍说的不真诚&#x27;</span>)<br>        i += <span class="hljs-number">1</span><br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇儿，我错了&#x27;</span>)<br>    i += <span class="hljs-number">1</span><br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;媳妇原谅我了，真开心，哈哈哈哈&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190125112111170.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>因为continue是退出当前一次循环，继续下一次循环，所以该循环在continue控制下是可以正常结束的，当循环结束后，则执行了else缩进的代码。</p>
+</blockquote>
+<h2 id="8-2-for…else"><a href="#8-2-for…else" class="headerlink" title="8.2 for…else"></a>8.2 for…else</h2><h3 id="8-2-1-语法"><a href="#8-2-1-语法" class="headerlink" title="8.2.1 语法"></a>8.2.1 语法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> 临时变量 <span class="hljs-keyword">in</span> 序列:<br>    重复执行的代码<br>    ...<br><span class="hljs-keyword">else</span>:<br>    循环正常结束之后要执行的代码<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>所谓else指的是循环正常结束之后要执行的代码，即如果是break终止循环的情况，else下方缩进的代码将不执行。</p>
+</blockquote>
+<h3 id="8-2-2-示例"><a href="#8-2-2-示例" class="headerlink" title="8.2.2 示例"></a>8.2.2 示例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;循环正常结束之后执行的代码&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="8-2-3-退出循环的方式"><a href="#8-2-3-退出循环的方式" class="headerlink" title="8.2.3 退出循环的方式"></a>8.2.3 退出循环的方式</h3><ol>
+<li>break终止循环</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-string">&#x27;e&#x27;</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;遇到e不打印&#x27;</span>)<br>        <span class="hljs-keyword">break</span><br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;循环正常结束之后执行的代码&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165551501-6592151.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>没有执行else缩进的代码。</p>
+</blockquote>
+<ol start="2">
+<li>continue控制循环</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">str1 = <span class="hljs-string">&#x27;itheima&#x27;</span><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> str1:<br>    <span class="hljs-keyword">if</span> i == <span class="hljs-string">&#x27;e&#x27;</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;遇到e不打印&#x27;</span>)<br>        <span class="hljs-keyword">continue</span><br>    <span class="hljs-built_in">print</span>(i)<br><span class="hljs-keyword">else</span>:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;循环正常结束之后执行的代码&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>执行结果：</p>
+<p><img src="/2023/01/16/Python-%E5%BE%AA%E7%8E%AF/image-20190104165714740-6592234.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>因为continue是退出当前一次循环，继续下一次循环，所以该循环在continue控制下是可以正常结束的，当循环结束后，则执行了else缩进的代码。</p>
+</blockquote>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>循环的作用：控制代码重复执行</li>
+<li>while语法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件:<br>    条件成立重复执行的代码<span class="hljs-number">1</span><br>    条件成立重复执行的代码<span class="hljs-number">2</span><br>    ......<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>while循环嵌套语法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">while</span> 条件<span class="hljs-number">1</span>:<br>    条件<span class="hljs-number">1</span>成立执行的代码<br>    ......<br>    <span class="hljs-keyword">while</span> 条件<span class="hljs-number">2</span>:<br>        条件<span class="hljs-number">2</span>成立执行的代码<br>        ......<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>for循环语法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">for</span> 临时变量 <span class="hljs-keyword">in</span> 序列:<br>    重复执行的代码<span class="hljs-number">1</span><br>    重复执行的代码<span class="hljs-number">2</span><br>    ......<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>break退出整个循环</li>
+<li>continue退出本次循环，继续执行下一次重复执行的代码</li>
+<li>else<ul>
+<li>while和for都可以配合else使用</li>
+<li>else下方缩进的代码含义：当循环正常结束后执行的代码</li>
+<li>break终止循环不会执行else下方缩进的代码</li>
+<li>continue退出循环的方式执行else下方缩进的代码</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/%E5%BE%AA%E7%8E%AF/">#循环</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Python 循环</div>
+      <div>http://lian-shuo.github.io/2023/01/16/Python-循环/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LianShuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/16/%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="字符串">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">字符串</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/16/Python-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5/" title="Python 条件语句">
+                        <span class="hidden-mobile">Python 条件语句</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
