@@ -1,0 +1,840 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LianShuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="目标 变量作用域 多函数程序执行流程 函数的返回值 函数的参数 拆包和交换两个变量的值 引用 可变和不可变类型  一. 变量作用域变量作用域指的是变量生效的范围，主要分为两类：&#x3D;&#x3D;局部变量&#x3D;&#x3D;和&#x3D;&#x3D;全局变量&#x3D;&#x3D;。  局部变量  所谓局部变量是定义在函数体内部的变量，即只在函数体内部生效。 12345678def tes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数二">
+<meta property="og:url" content="http://lian-shuo.github.io/2023/01/20/%E5%87%BD%E6%95%B0%E4%BA%8C/index.html">
+<meta property="og:site_name" content="lianshuo&#39;s blog">
+<meta property="og:description" content="目标 变量作用域 多函数程序执行流程 函数的返回值 函数的参数 拆包和交换两个变量的值 引用 可变和不可变类型  一. 变量作用域变量作用域指的是变量生效的范围，主要分为两类：&#x3D;&#x3D;局部变量&#x3D;&#x3D;和&#x3D;&#x3D;全局变量&#x3D;&#x3D;。  局部变量  所谓局部变量是定义在函数体内部的变量，即只在函数体内部生效。 12345678def tes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/20/%E5%87%BD%E6%95%B0%E4%BA%8C/image-20190220111744493.png">
+<meta property="article:published_time" content="2023-01-20T15:22:52.000Z">
+<meta property="article:modified_time" content="2023-01-20T15:33:21.352Z">
+<meta property="article:author" content="LianShuo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="函数">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lian-shuo.github.io/2023/01/20/%E5%87%BD%E6%95%B0%E4%BA%8C/image-20190220111744493.png">
+  
+  
+  
+  <title>函数二 - lianshuo&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lian-shuo.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LianShuo&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="函数二"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-20 23:22" pubdate>
+          2023年1月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          39 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">函数二</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>变量作用域</li>
+<li>多函数程序执行流程</li>
+<li>函数的返回值</li>
+<li>函数的参数</li>
+<li>拆包和交换两个变量的值</li>
+<li>引用</li>
+<li>可变和不可变类型</li>
+</ul>
+<h1 id="一-变量作用域"><a href="#一-变量作用域" class="headerlink" title="一. 变量作用域"></a>一. 变量作用域</h1><p>变量作用域指的是变量生效的范围，主要分为两类：&#x3D;&#x3D;局部变量&#x3D;&#x3D;和&#x3D;&#x3D;全局变量&#x3D;&#x3D;。</p>
+<ul>
+<li>局部变量</li>
+</ul>
+<p>所谓局部变量是定义在函数体内部的变量，即只在函数体内部生效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">testA</span>():<br>    a = <span class="hljs-number">100</span><br><br>    <span class="hljs-built_in">print</span>(a)<br><br><br>testA()  <span class="hljs-comment"># 100</span><br><span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 报错：name &#x27;a&#x27; is not defined</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>变量a是定义在<code>testA</code>函数内部的变量，在函数外部访问则立即报错。</p>
+</blockquote>
+<p>局部变量的作用：在函数体内部，临时保存数据，即当函数调用完成后，则销毁局部变量。</p>
+<ul>
+<li>全局变量</li>
+</ul>
+<p>所谓全局变量，指的是在函数体内、外都能生效的变量。</p>
+<p>思考：如果有一个数据，在函数A和函数B中都要使用，该怎么办？</p>
+<p>答：将这个数据存储在一个全局变量里面。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 定义全局变量a</span><br>a = <span class="hljs-number">100</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testA</span>():<br>    <span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 访问全局变量a，并打印变量a存储的数据</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testB</span>():<br>    <span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 访问全局变量a，并打印变量a存储的数据</span><br><br><br>testA()  <span class="hljs-comment"># 100</span><br>testB()  <span class="hljs-comment"># 100</span><br></code></pre></td></tr></table></figure>
+
+<p>思考：<code>testB</code>函数需求修改变量a的值为200，如何修改程序？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">100</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testA</span>():<br>    <span class="hljs-built_in">print</span>(a)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testB</span>():<br>    a = <span class="hljs-number">200</span><br>    <span class="hljs-built_in">print</span>(a)<br><br><br>testA()  <span class="hljs-comment"># 100</span><br>testB()  <span class="hljs-comment"># 200</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;全局变量a = <span class="hljs-subst">&#123;a&#125;</span>&#x27;</span>)  <span class="hljs-comment"># 全局变量a = 100</span><br></code></pre></td></tr></table></figure>
+
+<p>思考：在<code>testB</code>函数内部的<code>a = 200</code>中的变量a是在修改全局变量<code>a</code>吗？</p>
+<p>答：不是。观察上述代码发现，15行得到a的数据是100，仍然是定义全局变量a时候的值，而没有返回</p>
+<p><code>testB</code>函数内部的200。综上：<code>testB</code>函数内部的<code>a = 200</code>是定义了一个局部变量。</p>
+<p>思考：如何在函数体内部修改全局变量？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-number">100</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testA</span>():<br>    <span class="hljs-built_in">print</span>(a)<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">testB</span>():<br>    <span class="hljs-comment"># global 关键字声明a是全局变量</span><br>    <span class="hljs-keyword">global</span> a<br>    a = <span class="hljs-number">200</span><br>    <span class="hljs-built_in">print</span>(a)<br><br><br>testA()  <span class="hljs-comment"># 100</span><br>testB()  <span class="hljs-comment"># 200</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;全局变量a = <span class="hljs-subst">&#123;a&#125;</span>&#x27;</span>)  <span class="hljs-comment"># 全局变量a = 200</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="二-多函数程序执行流程"><a href="#二-多函数程序执行流程" class="headerlink" title="二. 多函数程序执行流程"></a>二. 多函数程序执行流程</h1><p>一般在实际开发过程中，一个程序往往由多个函数（后面知识中会讲解类）组成，并且多个函数共享某些数据，如下所示：</p>
+<ul>
+<li>共用全局变量</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. 定义全局变量</span><br>glo_num = <span class="hljs-number">0</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test1</span>():<br>    <span class="hljs-keyword">global</span> glo_num<br>    <span class="hljs-comment"># 修改全局变量</span><br>    glo_num = <span class="hljs-number">100</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test2</span>():<br>    <span class="hljs-comment"># 调用test1函数中修改后的全局变量</span><br>    <span class="hljs-built_in">print</span>(glo_num)<br>    <br><br><span class="hljs-comment"># 2. 调用test1函数，执行函数内部代码：声明和修改全局变量</span><br>test1()<br><span class="hljs-comment"># 3. 调用test2函数，执行函数内部代码：打印</span><br>test2()  <span class="hljs-comment"># 100</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>返回值作为参数传递</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test1</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">50</span><br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">test2</span>(<span class="hljs-params">num</span>):<br>    <span class="hljs-built_in">print</span>(num)<br><br><br><span class="hljs-comment"># 1. 保存函数test1的返回值</span><br>result = test1()<br><br><br><span class="hljs-comment"># 2.将函数返回值所在变量作为参数传递到test2函数</span><br>test2(result)  <span class="hljs-comment"># 50</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="三-函数的返回值"><a href="#三-函数的返回值" class="headerlink" title="三. 函数的返回值"></a>三. 函数的返回值</h1><p>思考：如果一个函数如些两个return (如下所示)，程序如何执行？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">return_num</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> <span class="hljs-number">2</span><br><br><br>result = return_num()<br><span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># 1</span><br></code></pre></td></tr></table></figure>
+
+<p>答：只执行了第一个return，原因是因为return可以退出当前函数，导致return下方的代码不执行。</p>
+<p>思考：如果一个函数要有多个返回值，该如何书写代码？</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">return_num</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br><br><br>result = return_num()<br><span class="hljs-built_in">print</span>(result)  <span class="hljs-comment"># (1, 2)</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：</p>
+<ol>
+<li><code>return a, b</code>写法，返回多个数据的时候，默认是元组类型。</li>
+<li>return后面可以连接列表、元组或字典，以返回多个值。</li>
+</ol>
+</blockquote>
+<h1 id="四-函数的参数"><a href="#四-函数的参数" class="headerlink" title="四. 函数的参数"></a>四. 函数的参数</h1><h2 id="4-1-位置参数"><a href="#4-1-位置参数" class="headerlink" title="4.1 位置参数"></a>4.1 位置参数</h2><p>位置参数：调用函数时根据函数定义的参数位置来传递参数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_info</span>(<span class="hljs-params">name, age, gender</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;您的名字是<span class="hljs-subst">&#123;name&#125;</span>, 年龄是<span class="hljs-subst">&#123;age&#125;</span>, 性别是<span class="hljs-subst">&#123;gender&#125;</span>&#x27;</span>)<br><br><br>user_info(<span class="hljs-string">&#x27;TOM&#x27;</span>, <span class="hljs-number">20</span>, <span class="hljs-string">&#x27;男&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：传递和定义参数的顺序及个数必须一致。</p>
+</blockquote>
+<h2 id="4-2-关键字参数"><a href="#4-2-关键字参数" class="headerlink" title="4.2 关键字参数"></a>4.2 关键字参数</h2><p>函数调用，通过“键&#x3D;值”形式加以指定。可以让函数更加清晰、容易使用，同时也清除了参数的顺序需求。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_info</span>(<span class="hljs-params">name, age, gender</span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;您的名字是<span class="hljs-subst">&#123;name&#125;</span>, 年龄是<span class="hljs-subst">&#123;age&#125;</span>, 性别是<span class="hljs-subst">&#123;gender&#125;</span>&#x27;</span>)<br><br><br>user_info(<span class="hljs-string">&#x27;Rose&#x27;</span>, age=<span class="hljs-number">20</span>, gender=<span class="hljs-string">&#x27;女&#x27;</span>)<br>user_info(<span class="hljs-string">&#x27;小明&#x27;</span>, gender=<span class="hljs-string">&#x27;男&#x27;</span>, age=<span class="hljs-number">16</span>)<br></code></pre></td></tr></table></figure>
+
+<p>注意：<strong>函数调用时，如果有位置参数时，位置参数必须在关键字参数的前面，但关键字参数之间不存在先后顺序。</strong></p>
+<h2 id="4-3-缺省参数"><a href="#4-3-缺省参数" class="headerlink" title="4.3 缺省参数"></a>4.3 缺省参数</h2><p>缺省参数也叫默认参数，用于定义函数，为参数提供默认值，调用函数时可不传该默认参数的值（注意：所有位置参数必须出现在默认参数前，包括函数定义和调用）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_info</span>(<span class="hljs-params">name, age, gender=<span class="hljs-string">&#x27;男&#x27;</span></span>):<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;您的名字是<span class="hljs-subst">&#123;name&#125;</span>, 年龄是<span class="hljs-subst">&#123;age&#125;</span>, 性别是<span class="hljs-subst">&#123;gender&#125;</span>&#x27;</span>)<br><br><br>user_info(<span class="hljs-string">&#x27;TOM&#x27;</span>, <span class="hljs-number">20</span>)<br>user_info(<span class="hljs-string">&#x27;Rose&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;女&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：函数调用时，如果为缺省参数传值则修改默认参数值；否则使用这个默认值。</p>
+</blockquote>
+<h2 id="4-4-不定长参数"><a href="#4-4-不定长参数" class="headerlink" title="4.4 不定长参数"></a>4.4 不定长参数</h2><p>不定长参数也叫可变参数。用于不确定调用的时候会传递多少个参数(不传参也可以)的场景。此时，可用包裹(packing)位置参数，或者包裹关键字参数，来进行参数传递，会显得非常方便。</p>
+<ul>
+<li>包裹位置传递</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_info</span>(<span class="hljs-params">*args</span>):<br>    <span class="hljs-built_in">print</span>(args)<br><br><br><span class="hljs-comment"># (&#x27;TOM&#x27;,)</span><br>user_info(<span class="hljs-string">&#x27;TOM&#x27;</span>)<br><span class="hljs-comment"># (&#x27;TOM&#x27;, 18)</span><br>user_info(<span class="hljs-string">&#x27;TOM&#x27;</span>, <span class="hljs-number">18</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：传进的所有参数都会被args变量收集，它会根据传进参数的位置合并为一个元组(tuple)，args是元组类型，这就是包裹位置传递。</p>
+</blockquote>
+<ul>
+<li>包裹关键字传递</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">user_info</span>(<span class="hljs-params">**kwargs</span>):<br>    <span class="hljs-built_in">print</span>(kwargs)<br><br><br><span class="hljs-comment"># &#123;&#x27;name&#x27;: &#x27;TOM&#x27;, &#x27;age&#x27;: 18, &#x27;id&#x27;: 110&#125;</span><br>user_info(name=<span class="hljs-string">&#x27;TOM&#x27;</span>, age=<span class="hljs-number">18</span>, <span class="hljs-built_in">id</span>=<span class="hljs-number">110</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>综上：无论是包裹位置传递还是包裹关键字传递，都是一个组包的过程。</p>
+</blockquote>
+<h1 id="五-拆包和交换变量值"><a href="#五-拆包和交换变量值" class="headerlink" title="五. 拆包和交换变量值"></a>五. 拆包和交换变量值</h1><h2 id="5-1-拆包"><a href="#5-1-拆包" class="headerlink" title="5.1 拆包"></a>5.1 拆包</h2><ul>
+<li>拆包：元组</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">return_num</span>():<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>, <span class="hljs-number">200</span><br><br><br>num1, num2 = return_num()<br><span class="hljs-built_in">print</span>(num1)  <span class="hljs-comment"># 100</span><br><span class="hljs-built_in">print</span>(num2)  <span class="hljs-comment"># 200</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>拆包：字典</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">dict1 = &#123;<span class="hljs-string">&#x27;name&#x27;</span>: <span class="hljs-string">&#x27;TOM&#x27;</span>, <span class="hljs-string">&#x27;age&#x27;</span>: <span class="hljs-number">18</span>&#125;<br>a, b = dict1<br><br><span class="hljs-comment"># 对字典进行拆包，取出来的是字典的key</span><br><span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># name</span><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># age</span><br><br><span class="hljs-built_in">print</span>(dict1[a])  <span class="hljs-comment"># TOM</span><br><span class="hljs-built_in">print</span>(dict1[b])  <span class="hljs-comment"># 18</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-2-交换变量值"><a href="#5-2-交换变量值" class="headerlink" title="5.2 交换变量值"></a>5.2 交换变量值</h2><p>需求：有变量<code>a = 10</code>和<code>b = 20</code>，交换两个变量的值。</p>
+<ul>
+<li>方法一</li>
+</ul>
+<p>借助第三变量存储数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. 定义中间变量</span><br>c = <span class="hljs-number">0</span><br><br><span class="hljs-comment"># 2. 将a的数据存储到c</span><br>c = a<br><br><span class="hljs-comment"># 3. 将b的数据20赋值到a，此时a = 20</span><br>a = b<br><br><span class="hljs-comment"># 4. 将之前c的数据10赋值到b，此时b = 10</span><br>b = c<br><br><span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 20</span><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># 10</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>方法二</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">a, b = <span class="hljs-number">1</span>, <span class="hljs-number">2</span><br>a, b = b, a<br><span class="hljs-built_in">print</span>(a)  <span class="hljs-comment"># 2</span><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># 1</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="六-引用"><a href="#六-引用" class="headerlink" title="六. 引用"></a>六. 引用</h1><h2 id="6-1-了解引用"><a href="#6-1-了解引用" class="headerlink" title="6.1 了解引用"></a>6.1 了解引用</h2><p>在python中，值是靠引用来传递来的。</p>
+<p><strong>我们可以用<code>id()</code>来判断两个变量是否为同一个值的引用。</strong> 我们可以将id值理解为那块内存的地址标识。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. int类型</span><br>a = <span class="hljs-number">1</span><br>b = a<br><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># 1</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(a))  <span class="hljs-comment"># 140708464157520</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(b))  <span class="hljs-comment"># 140708464157520</span><br><br>a = <span class="hljs-number">2</span><br><span class="hljs-built_in">print</span>(b)  <span class="hljs-comment"># 1,说明int类型为不可变类型 </span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(a))  <span class="hljs-comment"># 140708464157552，此时得到是的数据2的内存地址</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(b))  <span class="hljs-comment"># 140708464157520</span><br><br><br><span class="hljs-comment"># 2. 列表</span><br>aa = [<span class="hljs-number">10</span>, <span class="hljs-number">20</span>]<br>bb = aa<br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(aa))  <span class="hljs-comment"># 2325297783432</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(bb))  <span class="hljs-comment"># 2325297783432</span><br><br><br>aa.append(<span class="hljs-number">30</span>)<br><span class="hljs-built_in">print</span>(bb)  <span class="hljs-comment"># [10, 20, 30], 列表为可变类型</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(aa))  <span class="hljs-comment"># 2325297783432</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(bb))  <span class="hljs-comment"># 2325297783432</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="6-2-引用当做实参"><a href="#6-2-引用当做实参" class="headerlink" title="6.2 引用当做实参"></a>6.2 引用当做实参</h2><p>代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">test1</span>(<span class="hljs-params">a</span>):<br>    <span class="hljs-built_in">print</span>(a)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(a))<br><br>    a += a<br><br>    <span class="hljs-built_in">print</span>(a)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">id</span>(a))<br><br><br><span class="hljs-comment"># int：计算前后id值不同</span><br>b = <span class="hljs-number">100</span><br>test1(b)<br><br><span class="hljs-comment"># 列表：计算前后id值相同</span><br>c = [<span class="hljs-number">11</span>, <span class="hljs-number">22</span>]<br>test1(c)<br></code></pre></td></tr></table></figure>
+
+<p>效果图如下：</p>
+<p><img src="/2023/01/20/%E5%87%BD%E6%95%B0%E4%BA%8C/image-20190220111744493.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="七-可变和不可变类型"><a href="#七-可变和不可变类型" class="headerlink" title="七. 可变和不可变类型"></a>七. 可变和不可变类型</h1><p>所谓可变类型与不可变类型是指：数据能够直接进行修改，如果能直接修改那么就是可变，否则是不可变.</p>
+<ul>
+<li>可变类型<ul>
+<li>列表</li>
+<li>字典</li>
+<li>集合</li>
+</ul>
+</li>
+<li>不可变类型<ul>
+<li>整型</li>
+<li>浮点型</li>
+<li>字符串</li>
+<li>元组</li>
+</ul>
+</li>
+</ul>
+<h1 id="八-总结"><a href="#八-总结" class="headerlink" title="八. 总结"></a>八. 总结</h1><ul>
+<li>变量作用域<ul>
+<li>全局：函数体内外都能生效</li>
+<li>局部：当前函数体内部生效</li>
+</ul>
+</li>
+<li>函数多返回值写法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">return</span> 表达式<span class="hljs-number">1</span>, 表达式<span class="hljs-number">2.</span>..<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>函数的参数<ul>
+<li>位置参数<ul>
+<li>形参和实参的个数和书写顺序必须一致</li>
+</ul>
+</li>
+<li>关键字参数<ul>
+<li>写法： <code>key=value</code></li>
+<li>特点：形参和实参的书写顺序可以不一致；关键字参数必须书写在位置参数的后面</li>
+</ul>
+</li>
+<li>缺省参数<ul>
+<li>缺省参数就是默认参数</li>
+<li>写法：<code>key=vlaue</code></li>
+</ul>
+</li>
+<li>不定长位置参数<ul>
+<li>收集所有位置参数，返回一个元组</li>
+</ul>
+</li>
+<li>不定长关键字参数<ul>
+<li>收集所有关键字参数，返回一个字典</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>引用：Python中，数据的传递都是通过引用</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Python/%E5%87%BD%E6%95%B0/" class="category-chain-item">函数</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/%E5%87%BD%E6%95%B0/">#函数</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>函数二</div>
+      <div>http://lian-shuo.github.io/2023/01/20/函数二/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LianShuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/20/%E5%87%BD%E6%95%B0%E5%8A%A0%E5%BC%BA/" title="函数加强">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">函数加强</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/20/%E5%87%BD%E6%95%B0%E4%B8%80/" title="函数一">
+                        <span class="hidden-mobile">函数一</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

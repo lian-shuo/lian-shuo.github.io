@@ -1,0 +1,940 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="LianShuo">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="目标 文件操作的作用 文件的基本操作 打开 读写 关闭   文件备份 文件和文件夹的操作  一. 文件操作的作用思考：什么是文件？  思考：文件操作包含什么？ 答：打开、关闭、读、写、复制…. 思考：文件操作的的作用是什么？ 答：读取内容、写入内容、备份内容……  总结：文件操作的作用就是&#x3D;&#x3D;把一些内容(数据)存储存放起来，可以让程序下一次执行的时候直接使用，而不必重新制作一份">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件操作">
+<meta property="og:url" content="http://lian-shuo.github.io/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="lianshuo&#39;s blog">
+<meta property="og:description" content="目标 文件操作的作用 文件的基本操作 打开 读写 关闭   文件备份 文件和文件夹的操作  一. 文件操作的作用思考：什么是文件？  思考：文件操作包含什么？ 答：打开、关闭、读、写、复制…. 思考：文件操作的的作用是什么？ 答：读取内容、写入内容、备份内容……  总结：文件操作的作用就是&#x3D;&#x3D;把一些内容(数据)存储存放起来，可以让程序下一次执行的时候直接使用，而不必重新制作一份">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/1.jpg">
+<meta property="og:image" content="http://lian-shuo.github.io/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20190222105332438.png">
+<meta property="article:published_time" content="2023-01-20T15:13:31.000Z">
+<meta property="article:modified_time" content="2023-01-20T15:37:04.133Z">
+<meta property="article:author" content="LianShuo">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="文件操作">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lian-shuo.github.io/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/1.jpg">
+  
+  
+  
+  <title>文件操作 - lianshuo&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"lian-shuo.github.io","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>LianShuo&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/bg/bg.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="文件操作"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-01-20 23:13" pubdate>
+          2023年1月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">文件操作</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><ul>
+<li>文件操作的作用</li>
+<li>文件的基本操作<ul>
+<li>打开</li>
+<li>读写</li>
+<li>关闭</li>
+</ul>
+</li>
+<li>文件备份</li>
+<li>文件和文件夹的操作</li>
+</ul>
+<h1 id="一-文件操作的作用"><a href="#一-文件操作的作用" class="headerlink" title="一. 文件操作的作用"></a>一. 文件操作的作用</h1><p>思考：什么是文件？</p>
+<p><img src="/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/1.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>思考：文件操作包含什么？</p>
+<p>答：打开、关闭、读、写、复制….</p>
+<p>思考：文件操作的的作用是什么？</p>
+<p>答：读取内容、写入内容、备份内容……</p>
+<blockquote>
+<p>总结：文件操作的作用就是&#x3D;&#x3D;把一些内容(数据)存储存放起来，可以让程序下一次执行的时候直接使用，而不必重新制作一份，省时省力&#x3D;&#x3D;。</p>
+</blockquote>
+<h1 id="二-文件的基本操作"><a href="#二-文件的基本操作" class="headerlink" title="二. 文件的基本操作"></a>二. 文件的基本操作</h1><h2 id="2-1-文件操作步骤"><a href="#2-1-文件操作步骤" class="headerlink" title="2.1 文件操作步骤"></a>2.1 文件操作步骤</h2><ol>
+<li>打开文件</li>
+<li>读写等操作</li>
+<li>关闭文件</li>
+</ol>
+<blockquote>
+<p>注意：可以只打开和关闭文件，不进行任何读写操作。</p>
+</blockquote>
+<h3 id="2-1-1-打开"><a href="#2-1-1-打开" class="headerlink" title="2.1.1  打开"></a>2.1.1  打开</h3><p>在python，使用open函数，可以打开一个已经存在的文件，或者创建一个新文件，语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">open</span>(name, mode)<br></code></pre></td></tr></table></figure>
+
+<p>name：是要打开的目标文件名的字符串(可以包含文件所在的具体路径)。</p>
+<p>mode：设置打开文件的模式(访问模式)：只读、写入、追加等。</p>
+<h4 id="2-1-1-1-打开文件模式"><a href="#2-1-1-1-打开文件模式" class="headerlink" title="2.1.1.1 打开文件模式"></a>2.1.1.1 打开文件模式</h4><table>
+<thead>
+<tr>
+<th align="center">模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">r</td>
+<td>以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td align="center">rb</td>
+<td>以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td align="center">r+</td>
+<td>打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td align="center">rb+</td>
+<td>以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td align="center">w</td>
+<td>打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td align="center">wb</td>
+<td>以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td align="center">w+</td>
+<td>打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td align="center">wb+</td>
+<td>以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td align="center">a</td>
+<td>打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td align="center">ab</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td align="center">a+</td>
+<td>打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+<tr>
+<td align="center">ab+</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+</tbody></table>
+<h4 id="2-1-1-2-快速体验"><a href="#2-1-1-2-快速体验" class="headerlink" title="2.1.1.2 快速体验"></a>2.1.1.2 快速体验</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：此时的<code>f</code>是<code>open</code>函数的文件对象。</p>
+</blockquote>
+<h3 id="2-1-2-文件对象方法"><a href="#2-1-2-文件对象方法" class="headerlink" title="2.1.2 文件对象方法"></a>2.1.2 文件对象方法</h3><h5 id="2-1-2-1-写"><a href="#2-1-2-1-写" class="headerlink" title="2.1.2.1 写"></a>2.1.2.1 写</h5><ul>
+<li>语法</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">对象对象.write(<span class="hljs-string">&#x27;内容&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>体验</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. 打开文件</span><br>f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>)<br><br><span class="hljs-comment"># 2.文件写入</span><br>f.write(<span class="hljs-string">&#x27;hello world&#x27;</span>)<br><br><span class="hljs-comment"># 3. 关闭文件</span><br>f.close()<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：</p>
+<ol>
+<li><code>w	</code>和<code>a</code>模式：如果文件不存在则创建该文件；如果文件存在，<code>w</code>模式先清空再写入，<code>a</code>模式直接末尾追加。</li>
+<li><code>r</code>模式：如果文件不存在则报错。</li>
+</ol>
+</blockquote>
+<h5 id="2-1-2-2-读"><a href="#2-1-2-2-读" class="headerlink" title="2.1.2.2 读"></a>2.1.2.2 读</h5><ul>
+<li>read()</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象.read(num)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>num表示要从文件中读取的数据的长度（单位是字节），如果没有传入num，那么就表示读取文件中所有的数据。</p>
+</blockquote>
+<ul>
+<li>readlines()</li>
+</ul>
+<p>readlines可以按照行的方式把整个文件中的内容进行一次性读取，并且返回的是一个列表，其中每一行的数据为一个元素。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>)<br>content = f.readlines()<br><br><span class="hljs-comment"># [&#x27;hello world\n&#x27;, &#x27;abcdefg\n&#x27;, &#x27;aaa\n&#x27;, &#x27;bbb\n&#x27;, &#x27;ccc&#x27;]</span><br><span class="hljs-built_in">print</span>(content)<br><br><span class="hljs-comment"># 关闭文件</span><br>f.close()<br></code></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>readline()</li>
+</ul>
+<p>readline()一次读取一行内容。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">f = <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;test.txt&#x27;</span>)<br><br>content = f.readline()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;第一行：<span class="hljs-subst">&#123;content&#125;</span>&#x27;</span>)<br><br>content = f.readline()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;第二行：<span class="hljs-subst">&#123;content&#125;</span>&#x27;</span>)<br><br><span class="hljs-comment"># 关闭文件</span><br>f.close()<br></code></pre></td></tr></table></figure>
+
+<p><img src="/2023/01/20/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/image-20190222105332438.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="2-1-2-3-seek"><a href="#2-1-2-3-seek" class="headerlink" title="2.1.2.3 seek()"></a>2.1.2.3 seek()</h5><p>作用：用来移动文件指针。</p>
+<p>语法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象.seek(偏移量, 起始位置)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>起始位置：</p>
+<ul>
+<li>0：文件开头</li>
+<li>1：当前位置</li>
+<li>2：文件结尾</li>
+</ul>
+</blockquote>
+<h3 id="2-1-3-关闭"><a href="#2-1-3-关闭" class="headerlink" title="2.1.3 关闭"></a>2.1.3 关闭</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs open">文件对象.close()<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="三-文件备份"><a href="#三-文件备份" class="headerlink" title="三. 文件备份"></a>三. 文件备份</h1><p>需求：用户输入当前目录下任意文件名，程序完成对该文件的备份功能(备份文件名为xx[备份]后缀，例如：test[备份].txt)。</p>
+<h2 id="3-1-步骤"><a href="#3-1-步骤" class="headerlink" title="3.1 步骤"></a>3.1 步骤</h2><ol>
+<li>接收用户输入的文件名</li>
+<li>规划备份文件名</li>
+<li>备份文件写入数据</li>
+</ol>
+<h2 id="3-2-代码实现"><a href="#3-2-代码实现" class="headerlink" title="3.2 代码实现"></a>3.2 代码实现</h2><ol>
+<li>接收用户输入目标文件名</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">old_name = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;请输入您要备份的文件名：&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li><p>规划备份文件名</p>
+<p>2.1 提取目标文件后缀</p>
+<p>2.2 组织备份的文件名，xx[备份]后缀</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 2.1 提取文件后缀点的下标</span><br>index = old_name.rfind(<span class="hljs-string">&#x27;.&#x27;</span>)<br><br><span class="hljs-comment"># print(index)  # 后缀中.的下标</span><br><br><span class="hljs-comment"># print(old_name[:index])  # 源文件名（无后缀）</span><br><br><span class="hljs-comment"># 2.2 组织新文件名 旧文件名 + [备份] + 后缀</span><br>new_name = old_name[:index] + <span class="hljs-string">&#x27;[备份]&#x27;</span> + old_name[index:]<br><br><span class="hljs-comment"># 打印新文件名（带后缀）</span><br><span class="hljs-comment"># print(new_name)</span><br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>备份文件写入数据</p>
+<p>3.1 打开源文件 和 备份文件</p>
+<p>3.2 将源文件数据写入备份文件</p>
+<p>3.3 关闭文件</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 3.1 打开文件</span><br>old_f = <span class="hljs-built_in">open</span>(old_name, <span class="hljs-string">&#x27;rb&#x27;</span>)<br>new_f = <span class="hljs-built_in">open</span>(new_name, <span class="hljs-string">&#x27;wb&#x27;</span>)<br><br><span class="hljs-comment"># 3.2 将源文件数据写入备份文件</span><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    con = old_f.read(<span class="hljs-number">1024</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(con) == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">break</span><br>    new_f.write(con)<br><br><span class="hljs-comment"># 3.3 关闭文件</span><br>old_f.close()<br>new_f.close()<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-3-思考"><a href="#3-3-思考" class="headerlink" title="3.3 思考"></a>3.3 思考</h2><p>如果用户输入<code>.txt</code>，这是一个无效文件，程序如何更改才能限制只有有效的文件名才能备份？</p>
+<p>答：添加条件判断即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python">old_name = <span class="hljs-built_in">input</span>(<span class="hljs-string">&#x27;请输入您要备份的文件名：&#x27;</span>)<br><br>index = old_name.rfind(<span class="hljs-string">&#x27;.&#x27;</span>)<br><br><br><span class="hljs-keyword">if</span> index &gt; <span class="hljs-number">0</span>:<br>    postfix = old_name[index:]<br><br>new_name = old_name[:index] + <span class="hljs-string">&#x27;[备份]&#x27;</span> + postfix<br><br>old_f = <span class="hljs-built_in">open</span>(old_name, <span class="hljs-string">&#x27;rb&#x27;</span>)<br>new_f = <span class="hljs-built_in">open</span>(new_name, <span class="hljs-string">&#x27;wb&#x27;</span>)<br><br><span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>    con = old_f.read(<span class="hljs-number">1024</span>)<br>    <span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(con) == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">break</span><br>    new_f.write(con)<br><br>old_f.close()<br>new_f.close()<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="四-文件和文件夹的操作"><a href="#四-文件和文件夹的操作" class="headerlink" title="四. 文件和文件夹的操作"></a>四. 文件和文件夹的操作</h1><p>在Python中文件和文件夹的操作要借助os模块里面的相关功能，具体步骤如下：</p>
+<ol>
+<li>导入os模块</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用<code>os</code>模块相关功能</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.函数名()<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-1-文件重命名"><a href="#4-1-文件重命名" class="headerlink" title="4.1 文件重命名"></a>4.1 文件重命名</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.rename(目标文件名, 新文件名)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-2-删除文件"><a href="#4-2-删除文件" class="headerlink" title="4.2 删除文件"></a>4.2 删除文件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.remove(目标文件名)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-3-创建文件夹"><a href="#4-3-创建文件夹" class="headerlink" title="4.3 创建文件夹"></a>4.3 创建文件夹</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.mkdir(文件夹名字)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-4-删除文件夹"><a href="#4-4-删除文件夹" class="headerlink" title="4.4 删除文件夹"></a>4.4 删除文件夹</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.rmdir(文件夹名字)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-5-获取当前目录"><a href="#4-5-获取当前目录" class="headerlink" title="4.5 获取当前目录"></a>4.5 获取当前目录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.getcwd()<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-6-改变默认目录"><a href="#4-6-改变默认目录" class="headerlink" title="4.6 改变默认目录"></a>4.6 改变默认目录</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.chdir(目录)<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-7-获取目录列表"><a href="#4-7-获取目录列表" class="headerlink" title="4.7 获取目录列表"></a>4.7 获取目录列表</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">os.listdir(目录)<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="五-应用案例"><a href="#五-应用案例" class="headerlink" title="五.应用案例"></a>五.应用案例</h1><p>需求：批量修改文件名，既可添加指定字符串，又能删除指定字符串。</p>
+<ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>设置添加删除字符串的的标识</li>
+<li>获取指定目录的所有文件</li>
+<li>将原有文件名添加&#x2F;删除指定字符串，构造新名字</li>
+<li>os.rename()重命名</li>
+</ol>
+<ul>
+<li>代码</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> os<br><br><span class="hljs-comment"># 设置重命名标识：如果为1则添加指定字符，flag取值为2则删除指定字符</span><br>flag = <span class="hljs-number">1</span><br><br><span class="hljs-comment"># 获取指定目录</span><br>dir_name = <span class="hljs-string">&#x27;./&#x27;</span><br><br><span class="hljs-comment"># 获取指定目录的文件列表</span><br>file_list = os.listdir(dir_name)<br><span class="hljs-comment"># print(file_list)</span><br><br><br><span class="hljs-comment"># 遍历文件列表内的文件</span><br><span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> file_list:<br><br>    <span class="hljs-comment"># 添加指定字符</span><br>    <span class="hljs-keyword">if</span> flag == <span class="hljs-number">1</span>:<br>        new_name = <span class="hljs-string">&#x27;Python-&#x27;</span> + name<br>    <span class="hljs-comment"># 删除指定字符</span><br>    <span class="hljs-keyword">elif</span> flag == <span class="hljs-number">2</span>:<br>        num = <span class="hljs-built_in">len</span>(<span class="hljs-string">&#x27;Python-&#x27;</span>)<br>        new_name = name[num:]<br><br>    <span class="hljs-comment"># 打印新文件名，测试程序正确性</span><br>    <span class="hljs-built_in">print</span>(new_name)<br>    <br>    <span class="hljs-comment"># 重命名</span><br>    os.rename(dir_name+name, dir_name+new_name)<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="六-总结"><a href="#六-总结" class="headerlink" title="六. 总结"></a>六. 总结</h1><ul>
+<li><p>文件操作步骤</p>
+<ul>
+<li>打开</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象 = <span class="hljs-built_in">open</span>(目标文件, 访问模式)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>操作</p>
+<ul>
+<li>读</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象.read()<br>文件对象.readlines()<br>文件对象.readline()<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>写</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象.write()<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>seek()</li>
+</ul>
+</li>
+<li><p>关闭</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">文件对象.close()<br></code></pre></td></tr></table></figure>
+
+</li>
+<li><p>主访问模式</p>
+<ul>
+<li>w：写，文件不存在则新建该文件</li>
+<li>r：读，文件不存在则报错</li>
+<li>a：追加</li>
+</ul>
+</li>
+<li><p>文件和文件夹操作</p>
+<ul>
+<li>重命名：os.rename()</li>
+<li>获取当前目录：os.getcwd()</li>
+<li>获取目录列表：os.listdir()</li>
+</ul>
+</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Python/" class="category-chain-item">Python</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Python/">#Python</a>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/">#文件操作</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>文件操作</div>
+      <div>http://lian-shuo.github.io/2023/01/20/文件操作/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>LianShuo</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年1月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/01/20/%E5%87%BD%E6%95%B0%E4%B8%80/" title="函数一">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">函数一</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/01/19/%E4%BB%A3%E7%A0%81%E5%A4%8D%E7%8E%B0%EF%BC%9AMDOAU-net/" title="代码复现：MDOAU-net">
+                        <span class="hidden-mobile">代码复现：MDOAU-net</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
