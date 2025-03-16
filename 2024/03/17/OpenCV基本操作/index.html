@@ -16,23 +16,27 @@
   <meta name="author" content="LianShuo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Typora 基本使用 ## 对文字的特殊标注  1.标题123456# 一阶标题  或者快捷键Ctrl+1## 二阶标题 或者快捷键Ctrl+2### 三阶标题    或者快捷键Ctrl+3#### 四阶标题   或者快捷键Ctrl+4##### 五阶标题  或者快捷键Ctrl+5###### 六阶标题 或者快捷键Ctrl+6  2.下划线1&lt;u&gt;下划线的内容&lt;&#x2F;u&gt; 或">
+    <meta name="description" content="算数操作学习目标  了解图像的加法、混合操作  1.图像的加法你可以使用OpenCV的cv.add()函数把两幅图像相加，或者可以简单地通过numpy操作添加两个图像，如res &#x3D; img1 + img2。两个图像应该具有相同的大小和类型，或者第二个图像可以是标量值。 注意：OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。 参考以下代">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Typora 基本使用">
-<meta property="og:url" content="http://lian-shuo.github.io/2025/03/15/Typora-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="OpenCV基本操作">
+<meta property="og:url" content="http://lian-shuo.github.io/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="lianshuo&#39;s blog">
-<meta property="og:description" content="Typora 基本使用 ## 对文字的特殊标注  1.标题123456# 一阶标题  或者快捷键Ctrl+1## 二阶标题 或者快捷键Ctrl+2### 三阶标题    或者快捷键Ctrl+3#### 四阶标题   或者快捷键Ctrl+4##### 五阶标题  或者快捷键Ctrl+5###### 六阶标题 或者快捷键Ctrl+6  2.下划线1&lt;u&gt;下划线的内容&lt;&#x2F;u&gt; 或">
+<meta property="og:description" content="算数操作学习目标  了解图像的加法、混合操作  1.图像的加法你可以使用OpenCV的cv.add()函数把两幅图像相加，或者可以简单地通过numpy操作添加两个图像，如res &#x3D; img1 + img2。两个图像应该具有相同的大小和类型，或者第二个图像可以是标量值。 注意：OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。 参考以下代">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-03-15T12:19:58.000Z">
-<meta property="article:modified_time" content="2025-03-15T12:23:24.987Z">
+<meta property="og:image" content="http://lian-shuo.github.io/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/1.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/2.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/3.png">
+<meta property="article:published_time" content="2024-03-17T09:57:08.000Z">
+<meta property="article:modified_time" content="2025-03-16T09:59:22.194Z">
 <meta property="article:author" content="LianShuo">
-<meta property="article:tag" content="Typora">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="OpenCV">
+<meta property="article:tag" content="简介">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://lian-shuo.github.io/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/1.png">
   
   
   
-  <title>Typora 基本使用 - lianshuo&#39;s blog</title>
+  <title>OpenCV基本操作 - lianshuo&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +202,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Typora 基本使用"></span>
+            <span id="subtitle" data-typed-text="OpenCV基本操作"></span>
           
         </div>
 
@@ -209,8 +213,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-03-15 20:19" pubdate>
-          2025年3月15日 晚上
+        <time datetime="2024-03-17 17:57" pubdate>
+          2024年3月17日 下午
         </time>
       </span>
     
@@ -221,7 +225,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          662 字
+          1.4k 字
         
       </span>
     
@@ -232,7 +236,7 @@
         
         
         
-          6 分钟
+          12 分钟
         
       </span>
     
@@ -270,56 +274,54 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Typora 基本使用</h1>
+            <h1 style="display: none">OpenCV基本操作</h1>
             
             
               <div class="markdown-body">
                 
-                <h1><center>Typora 基本使用</center></h1>
-## 对文字的特殊标注
-
-<h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h4><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs clean"># 一阶标题  或者快捷键Ctrl+<span class="hljs-number">1</span><br>## 二阶标题 或者快捷键Ctrl+<span class="hljs-number">2</span><br>### 三阶标题    或者快捷键Ctrl+<span class="hljs-number">3</span><br>#### 四阶标题   或者快捷键Ctrl+<span class="hljs-number">4</span><br>##### 五阶标题  或者快捷键Ctrl+<span class="hljs-number">5</span><br>###### 六阶标题 或者快捷键Ctrl+<span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="2-下划线"><a href="#2-下划线" class="headerlink" title="2.下划线"></a>2.下划线</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">u</span>&gt;</span>下划线的内容<span class="hljs-tag">&lt;/<span class="hljs-name">u</span>&gt;</span> 或按快捷键Ctrl+U<br></code></pre></td></tr></table></figure>
-
-<h4 id="3-字体加粗"><a href="#3-字体加粗" class="headerlink" title="3.字体加粗"></a>3.字体加粗</h4><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-strong">**加粗内容**</span>    或按快捷键Ctrl+B<br></code></pre></td></tr></table></figure>
-
-<h4 id="4-斜体"><a href="#4-斜体" class="headerlink" title="4.斜体"></a>4.斜体</h4><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-strong">*倾斜内容*</span>  或按快捷键Ctrl+I<br></code></pre></td></tr></table></figure>
-
-<h4 id="5-删除线"><a href="#5-删除线" class="headerlink" title="5.删除线"></a>5.删除线</h4><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">~~删除线的内容~~  或按快捷键Alt+<span class="hljs-built_in">Shift</span>+<span class="hljs-number">5</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="6-文字高亮"><a href="#6-文字高亮" class="headerlink" title="6.文字高亮"></a>6.文字高亮</h4><figure class="highlight abnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs abnf"><span class="hljs-operator">=</span><span class="hljs-operator">=</span>我是最重要的<span class="hljs-operator">=</span><span class="hljs-operator">=</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="7-角标-需要设置"><a href="#7-角标-需要设置" class="headerlink" title="7.角标 (需要设置)"></a>7.角标 (需要设置)</h4><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">x</span>^<span class="hljs-number">2</span>^    H~<span class="hljs-number">2</span>~O<br></code></pre></td></tr></table></figure>
-
-<h4 id="8-文本居中"><a href="#8-文本居中" class="headerlink" title="8.文本居中"></a>8.文本居中</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">center</span>&gt;</span>这是要居中的文本内容<span class="hljs-tag">&lt;/<span class="hljs-name">center</span>&gt;</span><br></code></pre></td></tr></table></figure>
-
-<h4 id="9-list"><a href="#9-list" class="headerlink" title="9.list"></a>9.list</h4><p><strong>有序</strong></p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gcode">数字+英文小数点<span class="hljs-comment">(.)</span>+空格<br></code></pre></td></tr></table></figure>
-
-<ol>
-<li>策划目标</li>
-<li>战前准备</li>
-<li>开始行动</li>
-</ol>
-<p><strong>无序</strong></p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">+</span> 、- 、* 创建无序列<br></code></pre></td></tr></table></figure>
-
+                <h1 id="算数操作"><a href="#算数操作" class="headerlink" title="算数操作"></a>算数操作</h1><p><strong>学习目标</strong></p>
 <ul>
-<li>猪</li>
-<li>兔</li>
-<li>马</li>
+<li>了解图像的加法、混合操作</li>
 </ul>
-<h4 id="10-Table"><a href="#10-Table" class="headerlink" title="10.Table"></a>10.Table</h4><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs excel">快捷键Ctrl+<span class="hljs-built_in">T</span>弹出对话框<br></code></pre></td></tr></table></figure>
+<h1 id="1-图像的加法"><a href="#1-图像的加法" class="headerlink" title="1.图像的加法"></a>1.图像的加法</h1><p>你可以使用OpenCV的cv.add()函数把两幅图像相加，或者可以简单地通过numpy操作添加两个图像，如res &#x3D; img1 + img2。两个图像应该具有相同的大小和类型，或者第二个图像可以是标量值。</p>
+<p><strong>注意：OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。</strong></p>
+<p>参考以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = np.uint8([<span class="hljs-number">250</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>y = np.uint8([<span class="hljs-number">10</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>( cv.add(x,y) ) <span class="hljs-comment"># 250+10 = 260 =&gt; 255</span><br>[[<span class="hljs-number">255</span>]]<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>( x+y )          <span class="hljs-comment"># 250+10 = 260 % 256 = 4</span><br>[<span class="hljs-number">4</span>]<br></code></pre></td></tr></table></figure>
 
-<h4 id="11-分割线"><a href="#11-分割线" class="headerlink" title="11.分割线"></a>11.分割线</h4><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ada">***+回车  <br><span class="hljs-comment">---+回车  </span><br></code></pre></td></tr></table></figure>
+<p>这种差别在你对两幅图像进行加法时会更加明显。OpenCV 的结果会更好一点。所以我们尽量使用 OpenCV 中的函数。</p>
+<p>我们将下面两幅图像：</p>
+<p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 1 读取图像</span><br>img1 = cv.imread(<span class="hljs-string">&quot;view.jpg&quot;</span>)<br>img2 = cv.imread(<span class="hljs-string">&quot;rain.jpg&quot;</span>)<br><br><span class="hljs-comment"># 2 加法操作</span><br>img3 = cv.add(img1,img2) <span class="hljs-comment"># cv中的加法</span><br>img4 = img1+img2 <span class="hljs-comment"># 直接相加</span><br><br><span class="hljs-comment"># 3 图像显示</span><br>fig,axes=plt.subplots(nrows=<span class="hljs-number">1</span>,ncols=<span class="hljs-number">2</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">8</span>),dpi=<span class="hljs-number">100</span>)<br>axes[<span class="hljs-number">0</span>].imshow(img3[:,:,::-<span class="hljs-number">1</span>])<br>axes[<span class="hljs-number">0</span>].set_title(<span class="hljs-string">&quot;cv中的加法&quot;</span>)<br>axes[<span class="hljs-number">1</span>].imshow(img4[:,:,::-<span class="hljs-number">1</span>])<br>axes[<span class="hljs-number">1</span>].set_title(<span class="hljs-string">&quot;直接相加&quot;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure>
 
+<p>结果如下所示：</p>
+<p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/2.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="2-图像的混合"><a href="#2-图像的混合" class="headerlink" title="2.图像的混合"></a>2.图像的混合</h1><p>这其实也是加法，但是不同的是两幅图像的权重不同，这就会给人一种混合或者透明的感觉。图像混合的计算公式如下：</p>
+<blockquote>
+<p>g(x) &#x3D; (1−α)f0(x) + αf1(x)</p>
+</blockquote>
+<p>通过修改 α 的值（0 → 1），可以实现非常炫酷的混合。</p>
+<p>现在我们把两幅图混合在一起。第一幅图的权重是0.7，第二幅图的权重是0.3。函数cv2.addWeighted()可以按下面的公式对图片进行混合操作。</p>
+<blockquote>
+<p>dst &#x3D; α⋅img1 + β⋅img2 + γ</p>
+</blockquote>
+<p>这里γ取为零。</p>
+<p>参考以下代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 1 读取图像</span><br>img1 = cv.imread(<span class="hljs-string">&quot;view.jpg&quot;</span>)<br>img2 = cv.imread(<span class="hljs-string">&quot;rain.jpg&quot;</span>)<br><br><span class="hljs-comment"># 2 图像混合</span><br>img3 = cv.addWeighted(img1,<span class="hljs-number">0.7</span>,img2,<span class="hljs-number">0.3</span>,<span class="hljs-number">0</span>)<br><br><span class="hljs-comment"># 3 图像显示</span><br>plt.figure(figsize=(<span class="hljs-number">8</span>,<span class="hljs-number">8</span>))<br>plt.imshow(img3[:,:,::-<span class="hljs-number">1</span>])<br>plt.show()<br></code></pre></td></tr></table></figure>
 
-
-<h2 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h2><h4 id="1-图片"><a href="#1-图片" class="headerlink" title="1.图片"></a>1.图片</h4><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">![图片内容]<span class="hljs-params">(http://t10.baidu.com/it/<span class="hljs-attr">u</span>=1069603383,3074552113&amp;<span class="hljs-attr">fm</span>=170&amp;<span class="hljs-attr">s</span>=771B15C75C12D8D61C3C69FB0300501F&amp;<span class="hljs-attr">w</span>=640&amp;<span class="hljs-attr">h</span>=426&amp;img.JPEG)</span><br> 也可使用快捷键Ctrl+K<br>PS：也可将图片直接拖拽进来，自动生成链接<br></code></pre></td></tr></table></figure>
-
-<h4 id="2-链接"><a href="#2-链接" class="headerlink" title="2.链接"></a>2.链接</h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-attr">[百度一下，你就知道]</span>(<span class="hljs-attribute">https</span>:<span class="hljs-comment">//www.baidu.com/)</span><br></code></pre></td></tr></table></figure>
-
+<p>窗口将如下图显示：</p>
+<p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/3.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<p><strong>总结</strong></p>
+<ol>
+<li><p>图像加法：将两幅图像加载一起</p>
+<p>cv.add()</p>
+</li>
+<li><p>图像的混合：将两幅图像按照不同的比例进行混合</p>
+<p>cv.addweight()</p>
+</li>
+</ol>
+<p>注意：这里都要求两幅图像是相同大小的。</p>
 
                 
               </div>
@@ -338,7 +340,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Typora/" class="category-chain-item">Typora</a>
+  <a href="/categories/OpenCV/" class="category-chain-item">OpenCV</a>
   
   
 
@@ -353,9 +355,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Typora/">#Typora</a>
+        <a href="/tags/OpenCV/">#OpenCV</a>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7/">#工具</a>
+        <a href="/tags/%E7%AE%80%E4%BB%8B/">#简介</a>
       
     </div>
   
@@ -367,8 +369,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Typora 基本使用</div>
-      <div>http://lian-shuo.github.io/2025/03/15/Typora-基本使用/</div>
+      <div>OpenCV基本操作</div>
+      <div>http://lian-shuo.github.io/2024/03/17/OpenCV基本操作/</div>
     </div>
     <div class="license-meta">
       
@@ -380,7 +382,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年3月15日</div>
+          <div>2024年3月17日</div>
         </div>
       
       
@@ -412,12 +414,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/03/15/Typora-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Typora 基本使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Typora 基本使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/" title="OpenCV基本操作">
-                        <span class="hidden-mobile">OpenCV基本操作</span>
+                      <a href="/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/" title="OpenCV的模块">
+                        <span class="hidden-mobile">OpenCV的模块</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

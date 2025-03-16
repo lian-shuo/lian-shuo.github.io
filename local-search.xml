@@ -31,6 +31,33 @@
   
   
   <entry>
+    <title>OpenCV基本操作</title>
+    <link href="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/"/>
+    <url>/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/</url>
+    
+    <content type="html"><![CDATA[<h1 id="算数操作"><a href="#算数操作" class="headerlink" title="算数操作"></a>算数操作</h1><p><strong>学习目标</strong></p><ul><li>了解图像的加法、混合操作</li></ul><h1 id="1-图像的加法"><a href="#1-图像的加法" class="headerlink" title="1.图像的加法"></a>1.图像的加法</h1><p>你可以使用OpenCV的cv.add()函数把两幅图像相加，或者可以简单地通过numpy操作添加两个图像，如res &#x3D; img1 + img2。两个图像应该具有相同的大小和类型，或者第二个图像可以是标量值。</p><p><strong>注意：OpenCV加法和Numpy加法之间存在差异。OpenCV的加法是饱和操作，而Numpy添加是模运算。</strong></p><p>参考以下代码：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = np.uint8([<span class="hljs-number">250</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span>y = np.uint8([<span class="hljs-number">10</span>])<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>( cv.add(x,y) ) <span class="hljs-comment"># 250+10 = 260 =&gt; 255</span><br>[[<span class="hljs-number">255</span>]]<br><span class="hljs-meta">&gt;&gt;&gt; </span><span class="hljs-built_in">print</span>( x+y )          <span class="hljs-comment"># 250+10 = 260 % 256 = 4</span><br>[<span class="hljs-number">4</span>]<br></code></pre></td></tr></table></figure><p>这种差别在你对两幅图像进行加法时会更加明显。OpenCV 的结果会更好一点。所以我们尽量使用 OpenCV 中的函数。</p><p>我们将下面两幅图像：</p><p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/1.png"></p><p>代码：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 1 读取图像</span><br>img1 = cv.imread(<span class="hljs-string">&quot;view.jpg&quot;</span>)<br>img2 = cv.imread(<span class="hljs-string">&quot;rain.jpg&quot;</span>)<br><br><span class="hljs-comment"># 2 加法操作</span><br>img3 = cv.add(img1,img2) <span class="hljs-comment"># cv中的加法</span><br>img4 = img1+img2 <span class="hljs-comment"># 直接相加</span><br><br><span class="hljs-comment"># 3 图像显示</span><br>fig,axes=plt.subplots(nrows=<span class="hljs-number">1</span>,ncols=<span class="hljs-number">2</span>,figsize=(<span class="hljs-number">10</span>,<span class="hljs-number">8</span>),dpi=<span class="hljs-number">100</span>)<br>axes[<span class="hljs-number">0</span>].imshow(img3[:,:,::-<span class="hljs-number">1</span>])<br>axes[<span class="hljs-number">0</span>].set_title(<span class="hljs-string">&quot;cv中的加法&quot;</span>)<br>axes[<span class="hljs-number">1</span>].imshow(img4[:,:,::-<span class="hljs-number">1</span>])<br>axes[<span class="hljs-number">1</span>].set_title(<span class="hljs-string">&quot;直接相加&quot;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure><p>结果如下所示：</p><p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/2.png"></p><h1 id="2-图像的混合"><a href="#2-图像的混合" class="headerlink" title="2.图像的混合"></a>2.图像的混合</h1><p>这其实也是加法，但是不同的是两幅图像的权重不同，这就会给人一种混合或者透明的感觉。图像混合的计算公式如下：</p><blockquote><p>g(x) &#x3D; (1−α)f0(x) + αf1(x)</p></blockquote><p>通过修改 α 的值（0 → 1），可以实现非常炫酷的混合。</p><p>现在我们把两幅图混合在一起。第一幅图的权重是0.7，第二幅图的权重是0.3。函数cv2.addWeighted()可以按下面的公式对图片进行混合操作。</p><blockquote><p>dst &#x3D; α⋅img1 + β⋅img2 + γ</p></blockquote><p>这里γ取为零。</p><p>参考以下代码：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> cv2 <span class="hljs-keyword">as</span> cv<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 1 读取图像</span><br>img1 = cv.imread(<span class="hljs-string">&quot;view.jpg&quot;</span>)<br>img2 = cv.imread(<span class="hljs-string">&quot;rain.jpg&quot;</span>)<br><br><span class="hljs-comment"># 2 图像混合</span><br>img3 = cv.addWeighted(img1,<span class="hljs-number">0.7</span>,img2,<span class="hljs-number">0.3</span>,<span class="hljs-number">0</span>)<br><br><span class="hljs-comment"># 3 图像显示</span><br>plt.figure(figsize=(<span class="hljs-number">8</span>,<span class="hljs-number">8</span>))<br>plt.imshow(img3[:,:,::-<span class="hljs-number">1</span>])<br>plt.show()<br></code></pre></td></tr></table></figure><p>窗口将如下图显示：</p><p><img src="/2024/03/17/OpenCV%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/3.png"></p><hr><p><strong>总结</strong></p><ol><li><p>图像加法：将两幅图像加载一起</p><p>cv.add()</p></li><li><p>图像的混合：将两幅图像按照不同的比例进行混合</p><p>cv.addweight()</p></li></ol><p>注意：这里都要求两幅图像是相同大小的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>OpenCV</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>OpenCV</tag>
+      
+      <tag>简介</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>OpenCV的模块</title>
     <link href="/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/"/>
     <url>/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/</url>
