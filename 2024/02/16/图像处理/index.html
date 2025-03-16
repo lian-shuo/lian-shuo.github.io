@@ -16,25 +16,25 @@
   <meta name="author" content="LianShuo">
   <meta name="keywords" content="">
   
-    <meta name="description" content="OpenCV的模块下图列出了OpenCV中包含的各个模块：  其中core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：  core模块实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。 highgui模块实现了视频与图像的读取、显示、存储等接口。 imgproc模块实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈">
+    <meta name="description" content="1 图像的起源1.1  图像是什么 图像是人类视觉的基础，是自然景物的客观反映，是人类认识世界和人类本身的重要源泉。“图”是物体反射或透射光的分布，“像“是人的视觉系统所接受的图在人脑中所形版的印象或认识，照片、绘画、剪贴画、地图、书法作品、手写汉学、传真、卫星云图、影视画面、X光片、脑电图、心电图等都是图像。—姚敏. 数字图像处理：机械工业出版社，2014年。  1.2 模拟图像和数字图像图像起">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV的模块">
-<meta property="og:url" content="http://lian-shuo.github.io/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/index.html">
+<meta property="og:title" content="图像处理">
+<meta property="og:url" content="http://lian-shuo.github.io/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="lianshuo&#39;s blog">
-<meta property="og:description" content="OpenCV的模块下图列出了OpenCV中包含的各个模块：  其中core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：  core模块实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。 highgui模块实现了视频与图像的读取、显示、存储等接口。 imgproc模块实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈">
+<meta property="og:description" content="1 图像的起源1.1  图像是什么 图像是人类视觉的基础，是自然景物的客观反映，是人类认识世界和人类本身的重要源泉。“图”是物体反射或透射光的分布，“像“是人的视觉系统所接受的图在人脑中所形版的印象或认识，照片、绘画、剪贴画、地图、书法作品、手写汉学、传真、卫星云图、影视画面、X光片、脑电图、心电图等都是图像。—姚敏. 数字图像处理：机械工业出版社，2014年。  1.2 模拟图像和数字图像图像起">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://lian-shuo.github.io/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/1.png">
-<meta property="article:published_time" content="2024-03-16T09:24:52.000Z">
-<meta property="article:modified_time" content="2025-03-16T09:29:51.026Z">
+<meta property="og:image" content="http://lian-shuo.github.io/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/1.png">
+<meta property="og:image" content="http://lian-shuo.github.io/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/2.png">
+<meta property="article:published_time" content="2024-02-16T09:39:03.000Z">
+<meta property="article:modified_time" content="2025-03-16T09:43:55.867Z">
 <meta property="article:author" content="LianShuo">
-<meta property="article:tag" content="OpenCV">
-<meta property="article:tag" content="模块">
+<meta property="article:tag" content="图像处理">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://lian-shuo.github.io/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/1.png">
+<meta name="twitter:image" content="http://lian-shuo.github.io/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/1.png">
   
   
   
-  <title>OpenCV的模块 - lianshuo&#39;s blog</title>
+  <title>图像处理 - lianshuo&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="OpenCV的模块"></span>
+            <span id="subtitle" data-typed-text="图像处理"></span>
           
         </div>
 
@@ -211,8 +211,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-03-16 17:24" pubdate>
-          2024年3月16日 下午
+        <time datetime="2024-02-16 17:39" pubdate>
+          2024年2月16日 下午
         </time>
       </span>
     
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          808 字
+          1.4k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          7 分钟
+          12 分钟
         
       </span>
     
@@ -272,37 +272,39 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">OpenCV的模块</h1>
+            <h1 style="display: none">图像处理</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="OpenCV的模块"><a href="#OpenCV的模块" class="headerlink" title="OpenCV的模块"></a>OpenCV的模块</h1><p>下图列出了OpenCV中包含的各个模块：</p>
-<p><img src="/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/1.png" srcset="/img/loading.gif" lazyload></p>
-<p>其中core、highgui、imgproc是最基础的模块，该课程主要是围绕这几个模块展开的，分别介绍如下：</p>
-<ul>
-<li><strong>core模块</strong>实现了最核心的数据结构及其基本运算，如绘图函数、数组操作相关函数等。</li>
-<li><strong>highgui模块</strong>实现了视频与图像的读取、显示、存储等接口。</li>
-<li><strong>imgproc模块</strong>实现了图像处理的基础方法，包括图像滤波、图像的几何变换、平滑、阈值分割、形态学处理、边缘检测、目标检测、运动分析和对象跟踪等。</li>
-</ul>
-<p>对于图像处理其他更高层次的方向及应用，OpenCV也有相关的模块实现</p>
-<ul>
-<li><strong>features2d模块</strong>用于提取图像特征以及特征匹配，nonfree模块实现了一些专利算法，如sift特征。</li>
-<li><strong>objdetect模块</strong>实现了一些目标检测的功能，经典的基于Haar、LBP特征的人脸检测，基于HOG的行人、汽车等目标检测，分类器使用Cascade Classification（级联分类）和Latent SVM等。</li>
-<li><strong>stitching模块</strong>实现了图像拼接功能。</li>
-<li><strong>FLANN模块</strong>（Fast Library for Approximate Nearest Neighbors），包含快速近似最近邻搜索FLANN<br>和聚类Clustering算法。</li>
-<li><strong>ml模块</strong>机器学习模块（SVM，决策树，Boosting等等）。</li>
-<li><strong>photo模块</strong>包含图像修复和图像去噪两部分。</li>
-<li><strong>video模块</strong>针对视频处理，如背景分离，前景检测、对象跟踪等。</li>
-<li><strong>calib3d模块</strong>即Calibration（校准）3D，这个模块主要是相机校准和三维重建相关的内容。包含了基本的多视角几何算法，单个立体摄像头标定，物体姿态估计，立体相似性算法，3D信息的重建等等。</li>
-<li><strong>G-API模块</strong>包含超高效的图像处理pipeline引擎</li>
-</ul>
+                <h1 id="1-图像的起源"><a href="#1-图像的起源" class="headerlink" title="1 图像的起源"></a>1 图像的起源</h1><h2 id="1-1-图像是什么"><a href="#1-1-图像是什么" class="headerlink" title="1.1  图像是什么"></a>1.1  图像是什么</h2><blockquote>
+<p>图像是人类视觉的基础，是自然景物的客观反映，是人类认识世界和人类本身的重要源泉。“图”是物体反射或透射光的分布，“像“是人的视觉系统所接受的图在人脑中所形版的印象或认识，照片、绘画、剪贴画、地图、书法作品、手写汉学、传真、卫星云图、影视画面、X光片、脑电图、心电图等都是图像。—姚敏. 数字图像处理：机械工业出版社，2014年。</p>
+</blockquote>
+<h2 id="1-2-模拟图像和数字图像"><a href="#1-2-模拟图像和数字图像" class="headerlink" title="1.2 模拟图像和数字图像"></a>1.2 模拟图像和数字图像</h2><p>图像起源于1826年前后法国科学家Joseph Nicéphore Niépce发明的第一张可永久保存的照片，属于模拟图像。模拟图像又称连续图像，它通过某种物理量（如光、电等）的强弱变化来记录图像亮度信息，所以是连续变换的。模拟信号的特点是容易受干扰，如今已经基本全面被数字图像替代。</p>
+<p>在第一次世界大战后，1921年美国科学家发明了Bartlane System，并从<strong>伦敦传到纽约传输了第一幅数字图像</strong>，其亮度用离散数值表示，将图片编码成5个灰度级，如下图所示，通过海底电缆进行传输。在发送端图片被编码并使用打孔带记录，通过系统传输后在接收方使用特殊的打印机恢复成图像。1950年左右，计算机被发明，数字图像处理学科正式诞生。</p>
+<h1 id="2-数字图像的表示"><a href="#2-数字图像的表示" class="headerlink" title="2 数字图像的表示"></a>2 数字图像的表示</h1><h2 id="2-1-位数"><a href="#2-1-位数" class="headerlink" title="2.1 位数"></a>2.1 位数</h2><p>计算机采用0&#x2F;1编码的系统，数字图像也是利用0&#x2F;1来记录信息，我们平常接触的图像都是8位数图像，包含0～255灰度，其中0，代表最黑，1，表示最白。</p>
+<p><img src="/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/1.png" srcset="/img/loading.gif" lazyload></p>
+<p>人眼对灰度更敏感一些，在16位到32位之间。</p>
+<p><img src="/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/2.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-2-图像的分类"><a href="#2-2-图像的分类" class="headerlink" title="2.2 图像的分类"></a>2.2 图像的分类</h2><h5 id="二值图像："><a href="#二值图像：" class="headerlink" title="二值图像："></a><strong>二值图像</strong>：</h5><p>一幅二值图像的二维矩阵仅由0、1两个值构成，“0”代表黑色，“1”代白色。由于每一像素（矩阵中每一元素）取值仅有0、1两种可能，所以计算机中二值图像的数据类型通常为1个二进制位。二值图像通常用于文字、线条图的扫描识别（OCR）和掩膜图像的存储。</p>
+<h5 id="灰度图："><a href="#灰度图：" class="headerlink" title="灰度图："></a><strong>灰度图</strong>：</h5><p>每个像素只有一个采样颜色的图像，这类图像通常显示为从最暗黑色到最亮的白色的灰度，尽管理论上这个采样可以任何颜色的不同深浅，甚至可以是不同亮度上的不同颜色。灰度图像与黑白图像不同，在计算机图像领域中黑白图像只有黑色与白色两种颜色；但是，灰度图像在黑色与白色之间还有许多级的颜色深度。灰度图像经常是在单个电磁波频谱如可见光内测量每个像素的亮度得到的，用于显示的灰度图像通常用每个采样像素8位的非线性尺度来保存，这样可以有256级灰度（如果用16位，则有65536级）。</p>
+<h5 id="彩色图："><a href="#彩色图：" class="headerlink" title="彩色图："></a><strong>彩色图</strong>：</h5><p>每个像素通常是由红（R）、绿（G）、蓝（B）三个分量来表示的，分量介于（0，255）。RGB图像与索引图像一样都可以用来表示彩色图像。与索引图像一样，它分别用红（R）、绿（G）、蓝（B）三原色的组合来表示每个像素的颜色。但与索引图像不同的是，RGB图像每一个像素的颜色值（由RGB三原色表示）直接存放在图像矩阵中，由于每一像素的颜色需由R、G、B三个分量来表示，M、N分别表示图像的行列数，三个M x N的二维矩阵分别表示各个像素的R、G、B三个颜色分量。RGB图像的数据类型一般为8位无符号整形，通常用于表示和存放真彩色图像。</p>
 <hr>
 <p><strong>总结</strong></p>
-<p>   core：最核心的数据结构</p>
-<p>   highgui：视频与图像的读取、显示、存储</p>
-<p>   imgproc：图像处理的基础方法</p>
-<p>   features2d：图像特征以及特征匹配</p>
+<ol>
+<li><p>图像是什么</p>
+<p>图：物体反射或透射光的分布</p>
+<p>像：人的视觉系统所接受的图在人脑中所形版的印象或认识</p>
+</li>
+<li><p>模拟图像和数字图像</p>
+<p>模拟图像：连续存储的数据，</p>
+<p>数字图像：分级存储的数据</p>
+</li>
+<li><p>数字图像</p>
+<p>位数：图像的表示，常见的就是8位</p>
+<p>分类：二值图像，灰度图像和彩色图像</p>
+</li>
+</ol>
 
                 
               </div>
@@ -321,7 +323,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/OpenCV/" class="category-chain-item">OpenCV</a>
+  <a href="/categories/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" class="category-chain-item">图像处理</a>
   
   
 
@@ -336,9 +338,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/OpenCV/">#OpenCV</a>
-      
-        <a href="/tags/%E6%A8%A1%E5%9D%97/">#模块</a>
+        <a href="/tags/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/">#图像处理</a>
       
     </div>
   
@@ -350,8 +350,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>OpenCV的模块</div>
-      <div>http://lian-shuo.github.io/2024/03/16/OpenCV的模块/</div>
+      <div>图像处理</div>
+      <div>http://lian-shuo.github.io/2024/02/16/图像处理/</div>
     </div>
     <div class="license-meta">
       
@@ -363,7 +363,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年3月16日</div>
+          <div>2024年2月16日</div>
         </div>
       
       
@@ -395,9 +395,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/03/15/Typora-%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/" title="Typora 基本使用">
+                      <a href="/2024/03/16/OpenCV%E7%9A%84%E6%A8%A1%E5%9D%97/" title="OpenCV的模块">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Typora 基本使用</span>
+                        <span class="hidden-mobile">OpenCV的模块</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -405,8 +405,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/16/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86/" title="图像处理">
-                        <span class="hidden-mobile">图像处理</span>
+                      <a href="/2023/01/23/%E6%A8%A1%E5%9D%97-%E5%8C%85/" title="模块 &amp; 包">
+                        <span class="hidden-mobile">模块 &amp; 包</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
